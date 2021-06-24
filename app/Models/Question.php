@@ -17,9 +17,19 @@ class Question extends Model
         return $this->belongsTo(User::class)->withDefault();
     }
 
-    public function setTitleAttribute($value)
+    public function setTitleAttribute($value)    //Attribute
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function getUrlAttribute()       //Accessor
+    {
+        return route('questions.show',$this->id);
+    }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
 }
