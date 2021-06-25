@@ -31,8 +31,14 @@
                           <div class="media-body">
                               <div class="d-flex align-items-center">
                                   <h3 class="mt-0"><a href="{{$question->url}}">{{$question->title}}</a></h3>
-                                  <div class="ml-auto">
+                                  <div class="ml-auto btn-group">
                                       <a href="{{route('questions.edit',$question->id)}}" class="btn btn-sm btn-outline-info">Edit</a>
+                                      <form action="{{route('questions.destroy', $question->id)}}" method="post">
+                                          @method('DELETE')
+                                          @csrf
+                                          <button class="q-delete btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                      </form>
+
                                   </div>
                               </div>
 
