@@ -9,7 +9,7 @@ use function Sodium\crypto_box_publickey_from_secretkey;
 class Answer extends Model
 {
     use HasFactory;
-    protected $fillable = [''];
+    protected $fillable = ['body', 'user_id'];
 
     public function question()
     {
