@@ -61,9 +61,12 @@ class AnswersController extends Controller
      * @param Question $question
      * @param \App\Models\Answer $answer
      * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Question $question, Answer $answer)
     {
-        
+        $this->authorize('delete',$answer);
+        $answer->delete();
+        return back()->with('success', 'Your answer has been deleted');
     }
 }
