@@ -15,6 +15,18 @@ class AnswerPolicy
      * @param  \App\Models\Answer  $answer
      * @return mixed
      */
+    public function accept(User $user, Answer $answer)
+    {
+        return $user->id === $answer->question->user_id;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Answer  $answer
+     * @return mixed
+     */
     public function update(User $user, Answer $answer)
     {
         return $user->id === $answer->user_id;
