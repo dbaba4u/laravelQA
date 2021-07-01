@@ -26,34 +26,44 @@ class AnswersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Answer  $answer
+     * @param Question $question
+     * @param \App\Models\Answer $answer
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Answer $answer)
+    public function edit(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update',$answer);
+        return view('answers.edit', compact('question','answer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Http\Response
+     * @param Question $question
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Answer $answer
+     * @return void
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Question $question, Request $request, Answer $answer)
     {
-        //
+        $this->authorize('update',$answer);
+        $answer->update($request->validate([
+            'body'=>'required'
+        ]));
+        return redirect()->route('questions.show', $question->slug)->with('success', 'Your answer has been updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Answer  $answer
-     * @return \Illuminate\Http\Response
+     * @param Question $question
+     * @param \App\Models\Answer $answer
+     * @return void
      */
-    public function destroy(Answer $answer)
+    public function destroy(Question $question, Answer $answer)
     {
-        //
+        
     }
 }
