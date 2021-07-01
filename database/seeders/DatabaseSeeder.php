@@ -15,14 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(30)->create()->each(function ($user){
-             $user->questions()->saveMany(
-                 Question::factory(rand(1,5))->make()
-             )->each(function ($ques){
-                 $ques->answers()->saveMany(Answer::factory(rand(1,5))->make());
-             });
-
-         });
+        $this->call([
+            UsersQuestionsAnswersTableSeeder::class,
+            FavoritesTableSeeder::class,
+        ]);
 
     }
 }
