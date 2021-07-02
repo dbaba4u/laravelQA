@@ -19,7 +19,7 @@ class CreateVotablesTable extends Migration
             $table->string('votable_type');
             $table->tinyInteger('vote')->comment('-1: down vote, 1: up vote');
             $table->timestamps();
-            $table->unique('user_id','votable_type');
+            $table->unique(['user_id','votable_id','votable_type']);
         });
     }
 
