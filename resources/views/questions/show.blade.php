@@ -53,7 +53,8 @@
                         <div class="media-body">
                             {!! $question->body_html !!}
                             <div class="float-right">
-                                <span class="text-muted">Answered {{$question->created_date}}</span>
+                                <user-info :model="{{$question}}" label="Asked"></user-info>
+                                {{--<span class="text-muted">Answered {{$question->created_date}}</span>
                                 <div class="media">
                                     <a href="{{$question->user->url}}" class="pr-2">
                                         <img src="{{$question->user->avatar}}" alt="">
@@ -61,7 +62,7 @@
                                     <div class="media-body">
                                         <a href="{{$question->user->url}}">{{$question->user->name}}</a>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>

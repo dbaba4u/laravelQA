@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $appends = ['url', 'avatar'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function getUrlAttribute()       //Accessor
+    {
+        return '#';
     }
 
     public function getAvatarAttribute()
